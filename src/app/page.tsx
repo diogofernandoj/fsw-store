@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Categories from "./(home)/components/categories";
 
 const Home = () => {
   return (
@@ -11,6 +12,10 @@ const Home = () => {
         sizes="100vw"
         className="h-auto w-full"
       />
+
+      <div className="mt-8">
+        <Categories />
+      </div>
     </div>
   );
 };
