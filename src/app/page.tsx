@@ -28,8 +28,18 @@ const Home = async () => {
       </div>
 
       <div className="mt-8">
+        <p className="mb-2 ml-5 font-bold uppercase">Ofertas</p>
         <ProductList products={offers} />
       </div>
+
+      <Image
+        src="/banner-mouses.png"
+        alt="Até 55% de desconto em mouses!"
+        height={0}
+        width={0}
+        sizes="100vw"
+        className="h-auto w-full px-5"
+      />
     </div>
   );
 };
