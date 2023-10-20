@@ -24,3 +24,7 @@ export const calcProductTotalPrice = (
     totalPrice,
   };
 };
+
+export const currencyNumber = (number: number) => {
+  return `R$ ${number.toFixed(2).replace(".", ",")}`;
+};
