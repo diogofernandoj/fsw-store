@@ -47,6 +47,11 @@ const Home = async () => {
         <SectionTitle>Teclados</SectionTitle>
         <ProductList products={keyboards} />
       </div>
+
+      <PromoBanner
+        src="/banner-fones.png"
+        alt="Até 55% de desconto em fones!"
+      />
     </div>
   );
 };
