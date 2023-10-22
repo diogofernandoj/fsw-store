@@ -12,7 +12,7 @@ const ProductImages = ({ imagesUrl, name }: ProductImagesProps) => {
   const [currentImage, setCurrentImage] = useState<string>(imagesUrl[0]);
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="-mt-8 flex flex-col gap-8">
       <div className="flex h-[300px] w-full items-center justify-center bg-accent">
         <Image
           src={currentImage}
