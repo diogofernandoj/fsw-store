@@ -3,7 +3,6 @@ import ProductItem from "@/components/ui/product-item";
 import { CATEGORY_ICON } from "@/constants/category-icon";
 import { calcProductTotalPrice } from "@/helpers/product";
 import { prismaClient } from "@/lib/prisma";
-import { LayoutDashboardIcon } from "lucide-react";
 
 const CategoryProducts = async ({ params }: any) => {
   const category = await prismaClient.category.findFirst({
