@@ -1,37 +1,41 @@
 "use client";
 
+import { useContext } from "react";
 import { Button } from "@/components/ui/button";
 import DiscountBadge from "@/components/ui/discount-badge";
 import { ProductWithTotalPrice, currencyNumber } from "@/helpers/product";
 import { MinusIcon, PlusIcon, TruckIcon } from "lucide-react";
 import { useState } from "react";
+import { CartContext } from "@/providers/cart";
 
 interface ProductInfoProps {
   product: ProductWithTotalPrice;
 }
 
-const ProductInfo = ({
-  product: { name, basePrice, description, discountPercentage, totalPrice },
-}: ProductInfoProps) => {
+const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState<number>(1);
+
+  const { addProductToCart } = useContext(CartContext);
 
   return (
     <div className="flex flex-col px-5">
-      <h2 className="text-xl">{name}</h2>
+      <h2 className="text-xl">{product.name}</h2>
 
       <div className="flex flex-col">
         <div className="mt-2 flex items-center gap-2">
           <span className="text-lg font-bold">
-            {currencyNumber(totalPrice)}
+            {currencyNumber(product.totalPrice)}
           </span>
-          {discountPercentage > 0 && (
-            <DiscountBadge>{discountPercentage}</DiscountBadge>
+          {product.discountPercentage > 0 && (
+            <DiscountBadge>{product.discountPercentage}</DiscountBadge>
           )}
         </div>
-        {discountPercentage > 0 && (
+        {product.discountPercentage > 0 && (
           <div className="flex items-center gap-1 text-sm opacity-75">
             <span>De:</span>
-            <p className="line-through ">{currencyNumber(Number(basePrice))}</p>
+            <p className="line-through ">
+              {currencyNumber(Number(product.basePrice))}
+            </p>
           </div>
         )}
       </div>
@@ -49,10 +53,13 @@ const ProductInfo = ({
       <div className="mt-8 flex flex-col gap-2">
         <h2 className="text-sm font-bold">Descrição</h2>
 
-        <p className="text-xs opacity-60">{description}</p>
+        <p className="text-xs opacity-60">{product.description}</p>
       </div>
 
-      <Button className="mt-8 font-bold uppercase">
+      <Button
+        className="mt-8 font-bold uppercase"
+        onClick={() => addProductToCart({ ...product, quantity })}
+      >
         Adicionar ao carrinho
       </Button>
 
