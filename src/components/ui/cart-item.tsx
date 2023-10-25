@@ -6,7 +6,8 @@ import { Button } from "./button";
 import { useContext } from "react";
 
 const CartItem = ({ product }: { product: CartProduct }) => {
-  const { increaseProductQuantity } = useContext(CartContext);
+  const { decreaseProductQuantity, increaseProductQuantity } =
+    useContext(CartContext);
 
   return (
     <div className="flex items-center justify-between">
@@ -35,7 +36,12 @@ const CartItem = ({ product }: { product: CartProduct }) => {
             )}
           </div>
           <div className="flex items-center gap-2 text-sm">
-            <Button variant="outline" size="icon" className="h-8 w-8">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8"
+              onClick={() => decreaseProductQuantity(product.id)}
+            >
               <MinusIcon size={16} />
             </Button>
             <span>{product.quantity}</span>
