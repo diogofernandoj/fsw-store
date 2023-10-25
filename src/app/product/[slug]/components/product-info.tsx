@@ -15,6 +15,14 @@ interface ProductInfoProps {
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState<number>(1);
 
+  const handleDecreaseQuantityClick = () => {
+    setQuantity((prev) => (prev === 1 ? prev : prev - 1));
+  };
+
+  const handleIncreaseQuantityClick = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
   const { addProductToCart } = useContext(CartContext);
 
   return (
@@ -41,11 +49,11 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       </div>
 
       <div className="mt-4 flex items-center gap-4">
-        <Button variant="outline">
+        <Button variant="outline" onClick={handleDecreaseQuantityClick}>
           <MinusIcon size={14} />
         </Button>
         <span>{quantity}</span>
-        <Button variant="outline">
+        <Button variant="outline" onClick={handleIncreaseQuantityClick}>
           <PlusIcon size={14} />
         </Button>
       </div>
