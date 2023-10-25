@@ -6,8 +6,11 @@ import { Button } from "./button";
 import { useContext } from "react";
 
 const CartItem = ({ product }: { product: CartProduct }) => {
-  const { decreaseProductQuantity, increaseProductQuantity } =
-    useContext(CartContext);
+  const {
+    decreaseProductQuantity,
+    increaseProductQuantity,
+    removeProductFromCart,
+  } = useContext(CartContext);
 
   return (
     <div className="flex items-center justify-between">
@@ -56,7 +59,11 @@ const CartItem = ({ product }: { product: CartProduct }) => {
           </div>
         </div>
       </div>
-      <Button variant="outline" size={"icon"}>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => removeProductFromCart(product.id)}
+      >
         <TrashIcon />
       </Button>
     </div>
