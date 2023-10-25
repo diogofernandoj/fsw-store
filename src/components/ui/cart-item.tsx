@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { CartProduct } from "@/providers/cart";
+import { CartContext, CartProduct } from "@/providers/cart";
 import { currencyNumber } from "@/helpers/product";
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
 import { Button } from "./button";
+import { useContext } from "react";
 
 const CartItem = ({ product }: { product: CartProduct }) => {
+  const { increaseProductQuantity } = useContext(CartContext);
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4">
@@ -36,7 +39,12 @@ const CartItem = ({ product }: { product: CartProduct }) => {
               <MinusIcon size={16} />
             </Button>
             <span>{product.quantity}</span>
-            <Button variant="outline" size="icon" className="h-8 w-8">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8"
+              onClick={() => increaseProductQuantity(product.id)}
+            >
               <PlusIcon size={16} />
             </Button>
           </div>
