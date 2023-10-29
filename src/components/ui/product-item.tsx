@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { Badge } from "./badge";
-import { ArrowDownIcon } from "lucide-react";
 import { ProductWithTotalPrice, currencyNumber } from "@/helpers/product";
 import Link from "next/link";
 import DiscountBadge from "./discount-badge";
@@ -11,7 +9,7 @@ type ProductItemProps = {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <Link href={`product/${product.slug}`}>
+    <Link href={`/product/${product.slug}`}>
       <div className="flex w-full min-w-[160px] flex-col gap-2">
         <div className="relative flex h-40 w-full items-center justify-center rounded-lg bg-accent">
           {product.discountPercentage > 0 && (
