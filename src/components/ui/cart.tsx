@@ -6,12 +6,17 @@ import { Badge } from "./badge";
 import { CartContext } from "@/providers/cart";
 import CartItem from "./cart-item";
 import Image from "next/image";
+import { Separator } from "./separator";
+import { currencyNumber } from "@/helpers/product";
+import { ScrollArea } from "./scroll-area";
+import { Button } from "./button";
 
 const Cart = () => {
-  const { cartProducts } = useContext(CartContext);
+  const { cartProducts, cartBasePrice, cartTotalPrice, cartTotalDiscounts } =
+    useContext(CartContext);
 
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <Badge
         variant="outline"
         className="mb-8 flex w-fit items-center gap-1 border-2 border-primary px-3 py-1 text-base uppercase"
@@ -35,10 +40,37 @@ const Cart = () => {
           />
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
-          {cartProducts.map((product) => (
-            <CartItem key={product.id} product={product} />
-          ))}
+        <div className="flex flex-1 flex-col gap-6">
+          <ScrollArea className=" h-max max-h-[calc(100vh-340px)] overflow-hidden">
+            <div className="flex flex-col gap-4">
+              {cartProducts.map((product) => (
+                <CartItem key={product.id} product={product} />
+              ))}
+            </div>
+          </ScrollArea>
+          <div className="flex h-[160px] flex-col gap-3 text-xs">
+            <Separator />
+            <div className="flex items-center justify-between">
+              <p>Subtotal</p>
+              <p>{currencyNumber(cartBasePrice)}</p>
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between">
+              <p>Entrega</p>
+              <p>GRÁTIS</p>
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between">
+              <p>Descontos</p>
+              <p>-{currencyNumber(cartTotalDiscounts)}</p>
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between text-sm font-bold">
+              <p>Total</p>
+              <p>{currencyNumber(cartTotalPrice)}</p>
+            </div>
+            <Button className="font-bold uppercase">Finalizar compra</Button>
+          </div>
         </div>
       )}
     </div>
