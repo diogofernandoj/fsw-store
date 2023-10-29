@@ -10,10 +10,20 @@ import { Separator } from "./separator";
 import { currencyNumber } from "@/helpers/product";
 import { ScrollArea } from "./scroll-area";
 import { Button } from "./button";
+import { createCheckout } from "@/actions/checkout";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const { cartProducts, cartBasePrice, cartTotalPrice, cartTotalDiscounts } =
     useContext(CartContext);
+
+  const handleFinishPurchaseClick = async () => {
+    const checkout = await createCheckout(cartProducts);
+
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
+    stripe?.redirectToCheckout({ sessionId: checkout.id });
+  };
 
   return (
     <div className="flex h-full flex-col">
@@ -69,7 +79,12 @@ const Cart = () => {
               <p>Total</p>
               <p>{currencyNumber(cartTotalPrice)}</p>
             </div>
-            <Button className="font-bold uppercase">Finalizar compra</Button>
+            <Button
+              className="font-bold uppercase"
+              onClick={handleFinishPurchaseClick}
+            >
+              Finalizar compra
+            </Button>
           </div>
         </div>
       )}
