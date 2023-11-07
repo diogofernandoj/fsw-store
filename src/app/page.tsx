@@ -31,7 +31,7 @@ const Home = async () => {
   });
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 lg:gap-10">
       <Image
         src="/banner-offers.png"
         alt="Até 55% de desconto esse mês!"
@@ -41,7 +41,7 @@ const Home = async () => {
         sizes="100vw"
       />
 
-      <div className="flex flex-col gap-8 p-0 lg:container">
+      <div className="flex flex-col gap-8 p-0 lg:container lg:gap-10">
         <PromoBanner
           src="/banner-home01.png"
           alt="Até 55% de desconto esse mês!"
