@@ -32,38 +32,50 @@ const Home = async () => {
 
   return (
     <div className="flex flex-col gap-8">
-      <PromoBanner
-        src="/banner-home01.png"
+      <Image
+        src="/banner-offers.png"
         alt="Até 55% de desconto esse mês!"
+        className="hidden h-auto w-full lg:block"
+        width={0}
+        height={0}
+        sizes="100vw"
       />
 
-      <div className="px-5">
-        <Categories />
-      </div>
+      <div className="flex flex-col gap-8 p-0 lg:container">
+        <PromoBanner
+          src="/banner-home01.png"
+          alt="Até 55% de desconto esse mês!"
+          className="lg:hidden"
+        />
 
-      <div>
-        <SectionTitle>Ofertas</SectionTitle>
-        <ProductList products={offers} />
-      </div>
+        <div className="px-5">
+          <Categories />
+        </div>
 
-      <PromoBanner
-        src="/banner-mouses.png"
-        alt="Até 55% de desconto em mouses!"
-      />
+        <div>
+          <SectionTitle>Ofertas</SectionTitle>
+          <ProductList products={offers} />
+        </div>
 
-      <div>
-        <SectionTitle>Teclados</SectionTitle>
-        <ProductList products={keyboards} />
-      </div>
+        <PromoBanner
+          src="/banner-mouses.png"
+          alt="Até 55% de desconto em mouses!"
+        />
 
-      <PromoBanner
-        src="/banner-fones.png"
-        alt="Até 55% de desconto em fones!"
-      />
+        <div>
+          <SectionTitle>Teclados</SectionTitle>
+          <ProductList products={keyboards} />
+        </div>
 
-      <div>
-        <SectionTitle>Mouses</SectionTitle>
-        <ProductList products={mouses} />
+        <PromoBanner
+          src="/banner-fones.png"
+          alt="Até 55% de desconto em fones!"
+        />
+
+        <div>
+          <SectionTitle>Mouses</SectionTitle>
+          <ProductList products={mouses} />
+        </div>
       </div>
     </div>
   );
