@@ -14,7 +14,7 @@ const OffersPage = async () => {
   });
 
   return (
-    <div className="flex flex-col gap-8 px-4 lg:px-20">
+    <div className="mx-auto flex max-w-[1400px] flex-col gap-8 px-4 lg:px-20">
       <Badge variant="heading">
         <PercentIcon />
         Ofertas
