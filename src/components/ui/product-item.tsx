@@ -10,7 +10,7 @@ type ProductItemProps = {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Link href={`/product/${product.slug}`}>
-      <div className="flex w-full min-w-[160px] flex-col gap-2">
+      <div className="flex w-full min-w-[160px] flex-col gap-2 overflow-hidden lg:w-[200px]">
         <div className="relative flex h-40 w-full items-center justify-center rounded-lg bg-accent lg:h-[200px] lg:w-[200px]">
           {product.discountPercentage > 0 && (
             <DiscountBadge className="absolute left-2 top-2">

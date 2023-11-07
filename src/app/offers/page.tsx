@@ -14,17 +14,16 @@ const OffersPage = async () => {
   });
 
   return (
-    <div className="flex flex-col gap-8 px-5">
+    <div className="flex flex-col gap-8 px-4 lg:px-20">
       <Badge variant="heading">
         <PercentIcon />
         Ofertas
       </Badge>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="flex w-full flex-wrap gap-5 lg:gap-10">
         {offers.map((product) => (
-          <ProductItem
-            key={product.id}
-            product={calcProductTotalPrice(product)}
-          />
+          <div className="w-[160px] lg:w-[200px]" key={product.id}>
+            <ProductItem product={calcProductTotalPrice(product)} />
+          </div>
         ))}
       </div>
     </div>

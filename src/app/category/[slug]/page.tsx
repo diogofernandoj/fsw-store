@@ -19,14 +19,14 @@ const CategoryProducts = async ({ params }: any) => {
   }
 
   return (
-    <div className="flex flex-col gap-8 px-4">
+    <div className="mx-auto flex flex-col gap-8 px-4 lg:px-20">
       <Badge variant="heading">
         {CATEGORY_ICON[category.slug as keyof typeof CATEGORY_ICON]}
         {category.name}
       </Badge>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="flex w-full flex-wrap gap-5 lg:gap-10">
         {category.products.map((product) => (
-          <div className="w-full" key={product.id}>
+          <div className="w-[160px] lg:w-[200px]" key={product.id}>
             <ProductItem product={calcProductTotalPrice(product)} />
           </div>
         ))}
