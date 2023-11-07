@@ -55,7 +55,7 @@ const Cart = () => {
               ))}
             </div>
           </ScrollArea>
-          <div className="flex h-[160px] flex-col gap-3 text-xs">
+          <div className="flex h-[160px] flex-col gap-3 text-xs lg:text-sm">
             <Separator />
             <div className="flex items-center justify-between">
               <p>Subtotal</p>
@@ -72,7 +72,7 @@ const Cart = () => {
               <p>-{currencyNumber(cartTotalDiscounts)}</p>
             </div>
             <Separator />
-            <div className="flex items-center justify-between text-sm font-bold">
+            <div className="flex items-center justify-between text-sm font-bold lg:text-base">
               <p>Total</p>
               <p>{currencyNumber(cartTotalPrice)}</p>
             </div>
