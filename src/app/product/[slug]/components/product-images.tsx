@@ -12,8 +12,8 @@ const ProductImages = ({ imagesUrl, name }: ProductImagesProps) => {
   const [currentImage, setCurrentImage] = useState<string>(imagesUrl[0]);
 
   return (
-    <div className="-mt-8 flex flex-col gap-8">
-      <div className="flex h-[300px] w-full items-center justify-center bg-accent">
+    <div className="-mt-8 flex h-full flex-col gap-8 lg:mt-0">
+      <div className="flex h-[300px] w-full items-center justify-center bg-accent lg:h-full">
         <Image
           src={currentImage}
           alt={name}
@@ -24,7 +24,7 @@ const ProductImages = ({ imagesUrl, name }: ProductImagesProps) => {
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-4 px-5">
+      <div className="grid grid-cols-4 gap-4 px-5 lg:px-0">
         {imagesUrl.map((image) => (
           <button
             key={image}

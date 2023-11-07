@@ -27,19 +27,21 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
 
   return (
     <div className="flex flex-col px-5">
-      <h2 className="text-xl">{product.name}</h2>
+      <h2 className="text-xl lg:text-2xl">{product.name}</h2>
 
       <div className="flex flex-col">
         <div className="mt-2 flex items-center gap-2">
-          <span className="text-lg font-bold">
+          <span className="text-lg font-bold lg:text-3xl">
             {currencyNumber(product.totalPrice)}
           </span>
           {product.discountPercentage > 0 && (
-            <DiscountBadge>{product.discountPercentage}</DiscountBadge>
+            <DiscountBadge className="lg:text-sm">
+              {product.discountPercentage}
+            </DiscountBadge>
           )}
         </div>
         {product.discountPercentage > 0 && (
-          <div className="flex items-center gap-1 text-sm opacity-75">
+          <div className="flex items-center gap-1 text-sm opacity-75 lg:text-base">
             <span>De:</span>
             <p className="line-through ">
               {currencyNumber(Number(product.basePrice))}
@@ -71,7 +73,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         Adicionar ao carrinho
       </Button>
 
-      <div className="mt-8 flex items-center justify-between rounded-lg bg-accent px-5 py-2 text-xs">
+      <div className="mt-8 flex items-center justify-between rounded-lg bg-accent px-5 py-2 text-xs lg:bg-[#2a2a2a]">
         <div className="flex items-center gap-3">
           <TruckIcon />
           <div className="flex flex-col">
