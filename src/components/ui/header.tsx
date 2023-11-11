@@ -8,6 +8,7 @@ import {
   PercentIcon,
   ListOrderedIcon,
   LogOutIcon,
+  PackageSearch,
 } from "lucide-react";
 import { Button } from "./button";
 import { Card } from "./card";
@@ -19,7 +20,6 @@ import {
   SheetTrigger,
 } from "./sheet";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Sree_Krushnadevaraya } from "next/font/google";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Separator } from "./separator";
 import Link from "next/link";
@@ -100,6 +100,19 @@ const Header = () => {
                 </Button>
               </Link>
             </SheetClose>
+
+            {data?.user && (
+              <SheetClose asChild>
+                <Link href="/orders">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-2"
+                  >
+                    <PackageSearch size={16} /> Meus pedidos
+                  </Button>
+                </Link>
+              </SheetClose>
+            )}
 
             <SheetClose asChild>
               <Link href="/offers">
