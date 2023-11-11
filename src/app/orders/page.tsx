@@ -27,12 +27,12 @@ const OrdersPage = async () => {
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-5 px-5">
       <Badge variant="heading">
         <PackageSearch /> Meus pedidos
       </Badge>
 
-      <div className="mt-5 flex flex-col gap-5">
+      <div className="flex flex-col gap-5">
         {orders.map((order) => (
           <OrderItem key={order.id} order={order} />
         ))}
