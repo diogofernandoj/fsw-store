@@ -19,12 +19,12 @@ const CategoryProducts = async ({ params }: any) => {
   }
 
   return (
-    <div className="mx-auto flex max-w-[1400px] flex-col gap-8 px-4 lg:px-20">
+    <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-4 md:px-12 lg:px-20">
       <Badge variant="heading">
         {CATEGORY_ICON[category.slug as keyof typeof CATEGORY_ICON]}
         {category.name}
       </Badge>
-      <div className="flex w-full flex-wrap gap-5 lg:gap-10">
+      <div className="flex w-full flex-wrap justify-center gap-5 lg:justify-start lg:gap-10">
         {category.products.map((product) => (
           <div className="w-[160px] lg:w-[200px]" key={product.id}>
             <ProductItem product={calcProductTotalPrice(product)} />
