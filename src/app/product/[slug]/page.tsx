@@ -36,7 +36,7 @@ const ProductDetailsPage = async ({
   if (!product) return null;
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="mx-auto flex max-w-[1400px] flex-col gap-8">
       <div className="flex flex-col gap-8 lg:flex-row lg:px-10">
         <div className="lg:w-3/5">
           <ProductImages
@@ -51,7 +51,7 @@ const ProductDetailsPage = async ({
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 lg:px-5">
         <SectionTitle>Produtos recomendados</SectionTitle>
 
         <ProductList products={product.category.products} />
