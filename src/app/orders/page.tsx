@@ -27,7 +27,7 @@ const OrdersPage = async () => {
   });
 
   return (
-    <div className="flex flex-col gap-5 px-5">
+    <div className="mx-auto flex max-w-[1400px] flex-col gap-5 px-5 lg:px-20">
       <Badge variant="heading">
         <PackageSearch /> Meus pedidos
       </Badge>
