@@ -23,6 +23,20 @@ const SearchList = async ({
           },
         },
         {
+          category: {
+            name: {
+              contains: product,
+            },
+          },
+        },
+        {
+          category: {
+            slug: {
+              contains: product,
+            },
+          },
+        },
+        {
           description: {
             contains: product,
           },
