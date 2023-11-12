@@ -41,12 +41,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
 
     setTimeout(() => {
       setProductAdded(true);
-    }, 2000);
+    }, 1000);
 
     setTimeout(() => {
       setAddingProduct(false);
       setProductAdded(false);
-    }, 3000);
+    }, 2000);
   };
 
   return (
@@ -107,8 +107,9 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
               <CheckCircle2Icon />
             ) : (
               <motion.p
-                initial={{ translateY: -10 }}
-                animate={{ translateY: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ type: "tween" }}
               >
                 <Loader2Icon className="animate-spin" />

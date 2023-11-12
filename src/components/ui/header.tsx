@@ -193,7 +193,7 @@ const Header = () => {
               onBlur={() => setInputSearch(false)}
               className="absolute right-0 top-0 w-[230px]"
             >
-              <SearchProducts />
+              <SearchProducts setInputSearch={setInputSearch} />
             </motion.span>
           )}
           <Button

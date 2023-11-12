@@ -6,13 +6,20 @@ import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const SearchProducts = () => {
+interface SearchProductsProps {
+  setInputSearch?: (type: boolean) => void;
+}
+
+const SearchProducts = ({ setInputSearch }: SearchProductsProps) => {
   const router = useRouter();
 
   const [search, setSearch] = useState<string>("");
 
   const handleSearchKeyUp = (key: any) => {
     if (key === "Enter" && search.trim() !== "") {
+      if (setInputSearch) {
+        setInputSearch(false);
+      }
       router.push(
         `/products/search?product=${search.trim().toLocaleLowerCase()}`,
       );
@@ -20,6 +27,9 @@ const SearchProducts = () => {
   };
 
   const handleSearchClick = () => {
+    if (setInputSearch) {
+      setInputSearch(false);
+    }
     if (search.trim() !== "") {
       router.push(
         `/products/search?product=${search.trim().toLocaleLowerCase()}`,
@@ -40,6 +50,7 @@ const SearchProducts = () => {
       <Button
         variant="secondary"
         className="absolute right-0 top-0"
+        size="icon"
         onClick={handleSearchClick}
       >
         <SearchIcon />
