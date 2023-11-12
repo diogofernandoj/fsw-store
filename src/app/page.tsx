@@ -1,10 +1,12 @@
-import Image from "next/image";
 import Categories from "./(home)/components/categories";
 import ProductList from "../components/ui/product-list";
 import { prismaClient } from "@/lib/prisma";
 import SectionTitle from "../components/ui/section-title";
 import PromoBanner from "./(home)/components/promo-banner";
 import Link from "next/link";
+import DesktopBanner from "./(home)/components/desktop-banner";
+import CategoriesSkeleton from "./(home)/components/categories-skeleton";
+import { Suspense } from "react";
 
 const Home = async () => {
   const offers = await prismaClient.product.findMany({
@@ -32,16 +34,9 @@ const Home = async () => {
   });
 
   return (
-    <div className="-mt-8 flex flex-col gap-8 lg:gap-10">
-      <Link href="/offers" className="hidden lg:block">
-        <Image
-          src="/banner-offers.png"
-          alt="Até 55% de desconto esse mês!"
-          className="h-auto w-full"
-          width={0}
-          height={0}
-          sizes="100vw"
-        />
+    <div className="flex flex-col gap-8 lg:gap-10">
+      <Link href="/offers" className="-mt-8 hidden lg:block">
+        <DesktopBanner />
       </Link>
 
       <div className="flex flex-col gap-8 p-0 lg:container lg:gap-10">
@@ -53,7 +48,9 @@ const Home = async () => {
         </Link>
 
         <div className="px-5">
-          <Categories />
+          <Suspense fallback={<CategoriesSkeleton />}>
+            <Categories />
+          </Suspense>
         </div>
 
         <div>
