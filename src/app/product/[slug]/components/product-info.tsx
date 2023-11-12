@@ -7,6 +7,8 @@ import { ProductWithTotalPrice, currencyNumber } from "@/helpers/product";
 import { MinusIcon, PlusIcon, TruckIcon } from "lucide-react";
 import { useState } from "react";
 import { CartContext } from "@/providers/cart";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/animations/variants";
 
 interface ProductInfoProps {
   product: ProductWithTotalPrice;
@@ -26,7 +28,13 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   const { addProductToCart } = useContext(CartContext);
 
   return (
-    <div className="flex flex-col px-5">
+    <motion.div
+      className="flex flex-col px-5"
+      variants={fadeIn("down", 0)}
+      initial="hidden"
+      animate="show"
+      exit="hidden"
+    >
       <h2 className="text-xl lg:text-2xl">{product.name}</h2>
 
       <div className="flex flex-col">
@@ -87,7 +95,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         </div>
         <p className="font-bold">Frete grátis</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
