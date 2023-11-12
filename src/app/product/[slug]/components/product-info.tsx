@@ -4,7 +4,13 @@ import { useContext } from "react";
 import { Button } from "@/components/ui/button";
 import DiscountBadge from "@/components/ui/discount-badge";
 import { ProductWithTotalPrice, currencyNumber } from "@/helpers/product";
-import { MinusIcon, PlusIcon, TruckIcon } from "lucide-react";
+import {
+  CheckCircle2Icon,
+  Loader2Icon,
+  MinusIcon,
+  PlusIcon,
+  TruckIcon,
+} from "lucide-react";
 import { useState } from "react";
 import { CartContext } from "@/providers/cart";
 import { motion } from "framer-motion";
@@ -26,6 +32,22 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   };
 
   const { addProductToCart } = useContext(CartContext);
+  const [addingProduct, setAddingProduct] = useState<boolean>(false);
+  const [productAdded, setProductAdded] = useState<boolean>(false);
+
+  const handleAddProductToCart = () => {
+    setAddingProduct(true);
+    addProductToCart({ ...product, quantity });
+
+    setTimeout(() => {
+      setProductAdded(true);
+    }, 2000);
+
+    setTimeout(() => {
+      setAddingProduct(false);
+      setProductAdded(false);
+    }, 3000);
+  };
 
   return (
     <motion.div
@@ -75,10 +97,27 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       </div>
 
       <Button
+        disabled={addingProduct}
         className="mt-8 font-bold uppercase"
-        onClick={() => addProductToCart({ ...product, quantity })}
+        onClick={handleAddProductToCart}
       >
-        Adicionar ao carrinho
+        {addingProduct ? (
+          <div>
+            {productAdded ? (
+              <CheckCircle2Icon />
+            ) : (
+              <motion.p
+                initial={{ translateY: -10 }}
+                animate={{ translateY: 0 }}
+                transition={{ type: "tween" }}
+              >
+                <Loader2Icon className="animate-spin" />
+              </motion.p>
+            )}
+          </div>
+        ) : (
+          <p>Adicionar ao carrinho</p>
+        )}
       </Button>
 
       <div className="mt-8 flex items-center justify-between rounded-lg bg-accent px-5 py-2 text-xs lg:bg-[#2a2a2a]">
