@@ -27,7 +27,7 @@ import { Separator } from "./separator";
 import Link from "next/link";
 import Cart from "./cart";
 import { Badge } from "./badge";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/providers/cart";
 import {
   DropdownMenu,
@@ -37,6 +37,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
+import SearchProducts from "@/app/(home)/components/search-products";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/animations/variants";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -50,6 +53,8 @@ const Header = () => {
   };
 
   const { cartProducts } = useContext(CartContext);
+
+  const [inputSearch, setInputSearch] = useState<boolean>(false);
 
   return (
     <Card className="flex items-center justify-between p-5">
@@ -155,8 +160,8 @@ const Header = () => {
       </Sheet>
 
       <Link href="/">
-        <h1 className="text-lg font-semibold">
-          <span className="text-primary">Jota</span>Store
+        <h1 className="text-lg font-semibold lg:text-xl">
+          <span className="font-bold text-primary">Jota</span>Store
         </h1>
       </Link>
 
@@ -179,13 +184,27 @@ const Header = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button
-          variant="outline"
-          size="icon"
-          className="hidden items-center justify-center lg:flex"
-        >
-          <SearchIcon />
-        </Button>
+        <div className="relative">
+          {inputSearch && (
+            <motion.span
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "230px" }}
+              exit={{ opacity: 0, width: 0 }}
+              onBlur={() => setInputSearch(false)}
+              className="absolute right-0 top-0 w-[230px]"
+            >
+              <SearchProducts />
+            </motion.span>
+          )}
+          <Button
+            variant="outline"
+            size="icon"
+            className="hidden items-center justify-center lg:flex"
+            onClick={() => setInputSearch(true)}
+          >
+            <SearchIcon />
+          </Button>
+        </div>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

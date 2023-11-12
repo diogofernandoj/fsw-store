@@ -31,10 +31,11 @@ const SearchProducts = () => {
     <div className="relative mx-auto max-w-[600px]">
       <Input
         className="bg-accent pr-8 text-sm font-semibold"
-        placeholder="Qual produto você deseja?"
+        placeholder="Pesquise um produto"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         onKeyUp={(e) => handleSearchKeyUp(e.key)}
+        autoFocus
       />
       <Button
         variant="secondary"

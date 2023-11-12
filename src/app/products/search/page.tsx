@@ -37,7 +37,7 @@ const SearchList = async ({
   });
 
   return (
-    <div className="mx-auto flex w-full max-w-[600px] flex-col gap-8 px-4 md:px-12 lg:px-20">
+    <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-4 md:px-12 lg:px-20">
       {products.length ? (
         <>
           <Badge variant="heading">
