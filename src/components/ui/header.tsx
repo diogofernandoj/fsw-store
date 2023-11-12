@@ -24,6 +24,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Separator } from "./separator";
 import Link from "next/link";
 import Cart from "./cart";
+import { Badge } from "./badge";
+import { useContext } from "react";
+import { CartContext } from "@/providers/cart";
 
 const Header = () => {
   const { status, data } = useSession();
@@ -35,6 +38,8 @@ const Header = () => {
   const handleLogoutClick = async () => {
     await signOut();
   };
+
+  const { cartProducts } = useContext(CartContext);
 
   return (
     <Card className="flex items-center justify-between p-5">
@@ -147,7 +152,12 @@ const Header = () => {
 
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon">
+          <Button variant="outline" size="icon" className="relative">
+            {cartProducts.length > 0 && (
+              <Badge className="absolute -right-2 -top-2 flex h-5 w-6 items-center justify-center p-1 text-xs">
+                {cartProducts.length}
+              </Badge>
+            )}
             <ShoppingCartIcon />
           </Button>
         </SheetTrigger>
