@@ -7,6 +7,7 @@ import Link from "next/link";
 import DesktopBanner from "./(home)/components/desktop-banner";
 import CategoriesSkeleton from "./(home)/components/categories-skeleton";
 import { Suspense } from "react";
+import SearchProducts from "./(home)/components/search-products";
 
 const Home = async () => {
   const offers = await prismaClient.product.findMany({
@@ -35,6 +36,10 @@ const Home = async () => {
 
   return (
     <div className="flex flex-col gap-8 lg:gap-10">
+      <div className="px-5 lg:hidden">
+        <SearchProducts />
+      </div>
+
       <Link href="/offers" className="-mt-8 hidden lg:block">
         <DesktopBanner />
       </Link>
